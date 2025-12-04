@@ -1,0 +1,55 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.alibaba.android.arouter'
+
+    compileSdk Integer.parseInt(COMPILE_SDK_VERSION)
+
+    defaultConfig {
+        minSdk Integer.parseInt(MIN_SDK_VERSION)
+        targetSdk Integer.parseInt(TARGET_SDK_VERSION)
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+//            withJavadocJar()
+        }
+    }
+}
+
+dependencies {
+    annotationProcessor project(':arouter-compiler')
+    api project(':arouter-annotation')
+
+    implementation "androidx.annotation:annotation:${ANDROIDX_APPCOMPAT_LIB_VERSION}"
+    implementation "androidx.core:core:${ANDROIDX_APPCOMPAT_LIB_VERSION}"
+    implementation "androidx.fragment:fragment:${ANDROIDX_APPCOMPAT_LIB_VERSION}"
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+}
+
+apply from: rootProject.file('gradle/maven-publish.gradle')

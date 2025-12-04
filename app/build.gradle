@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.application'
+//    id 'com.alibaba.arouter'
+}
+
+android {
+    compileSdk Integer.parseInt(COMPILE_SDK_VERSION)
+
+    defaultConfig {
+        minSdk Integer.parseInt(MIN_SDK_VERSION)
+        targetSdk Integer.parseInt(TARGET_SDK_VERSION)
+        versionName "0.0.1"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("./doc/debug/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lint {
+        abortOnError false
+    }
+    namespace 'com.alibaba.android.arouter.demo'
+
+}
+
+dependencies {
+    implementation project(':arouter-api')
+
+    // 开发中依赖对方的 service 包
+    implementation project(':module-java-export')
+    implementation project(':module-java')
+
+    implementation project(':module-kotlin')
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.appcompat:appcompat:${ANDROIDX_APPCOMPAT_LIB_VERSION}"
+}
