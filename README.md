@@ -1,3 +1,37 @@
+## 如何使用
+
+```
+    1. 在根目录的build.gralde下添加
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+	buildscript {
+	     dependencies {
+	         // 添加插件依赖
+	         classpath "com.github.chenyi2013.ARouters:arouter-register:2.0.1"  
+	     }
+	}
+```
+
+
+
+```
+    2. 在项目中的build.gralde下添加
+        // 在主项目里添加插件依赖
+        apply plugin: 'com.alibaba.arouter'
+        
+        dependencies {
+            // aar依赖
+            implementation 'com.github.chenyi2013.ARouters:arouter-api:2.0.1'  
+            kapt 'com.github.chenyi2013.ARouters:arouter-compiler:2.0.1' 
+        }
+
+```
+
 ```
     A framework for assisting in the renovation of Android app componentization
 ```
