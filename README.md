@@ -12,7 +12,7 @@
 	buildscript {
 	     dependencies {
 	         // 添加插件依赖
-	         classpath "com.github.chenyi2013.ARouters:arouter-register:2.0.1"  
+	         classpath "com.github.chenyi2013.ARouters:arouter-register:2.0.2"  
 	     }
 	}
 ```
@@ -26,8 +26,8 @@
         
         dependencies {
             // aar依赖
-            implementation 'com.github.chenyi2013.ARouters:arouter-api:2.0.1'  
-            kapt 'com.github.chenyi2013.ARouters:arouter-compiler:2.0.1' 
+            implementation 'com.github.chenyi2013.ARouters:arouter-api:2.0.2'  
+            kapt 'com.github.chenyi2013.ARouters:arouter-compiler:2.0.2' 
         }
 
 ```
